@@ -1,18 +1,19 @@
 const fs = require("fs");
 const [M, N] = fs.readFileSync("/dev/stdin").toString().trim().split(" ").map(Number);
 
-const isPrime = new Uint8Array(N + 1).fill(1);
-isPrime[0] = isPrime[1] = 0;
+const isPrime = new Array(N + 1).fill(true);
+isPrime[0] = isPrime[1] = false;
 
-let output = "";
-
-for (let i = 2; i <= N; i++) {
+for (let i = 2; i <= Math.sqrt(N); i++) {
   if (!isPrime[i]) continue;
-  if (i >= M) output += i + "\n";
-
   for (let j = i * i; j <= N; j += i) {
-    isPrime[j] = 0;
+    isPrime[j] = false;
   }
 }
 
-process.stdout.write(output);
+const answer = [];
+for (let i = M; i <= N; i++) {
+  if (isPrime[i]) answer.push(i);
+}
+
+console.log(answer.join("\n"));
