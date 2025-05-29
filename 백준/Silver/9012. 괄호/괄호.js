@@ -2,24 +2,21 @@ const fs = require("fs");
 const [t, ...datas] = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 for (let i = 0; i < Number(t); i++) {
-  const data = datas[i];
-  const stack = [];
+  const s = datas[i];
+  let balance = 0;
+  let valid = true;
 
-  if (data[0] === ")" || data[data.length - 1] === "(") {
-    console.log("NO");
-    continue;
-  }
-
-  for (let j = 0; j < data.length; j++) {
-    const l = data[j];
-    if (l === "(") {
-      stack.push(l);
-    } else if (stack[stack.length - 1] === "(") {
-      stack.pop();
+  for (const ch of s) {
+    if (ch === "(") {
+      balance++;
     } else {
-      stack.push(l);
+      balance--;
+    }
+    if (balance < 0) {
+      valid = false;
+      break;
     }
   }
 
-  console.log(stack.length === 0 ? "YES" : "NO");
+  console.log(valid && balance === 0 ? "YES" : "NO");
 }
