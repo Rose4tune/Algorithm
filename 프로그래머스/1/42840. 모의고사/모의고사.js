@@ -15,13 +15,7 @@ function solution(answers) {
     })
     
     const maxScore = Math.max(...score);
-    
-    const result = [];
-    score.forEach((s, i) => {
-        if (s === maxScore) {
-            result.push(i + 1)
-        }
-    })
-    
-    return result;
+    return score
+        .map((score, idx) => (score === maxScore ? idx + 1 : null))
+        .filter((v) => v !== null);
 }
