@@ -1,9 +1,3 @@
 function solution(arr1, arr2) {
-  const transposed = arr2[0].map((_, i) => arr2.map(row => row[i]));
-
-  return arr1.map((row) =>
-    transposed.map((col) =>
-      row.reduce((acc, cur, i) => acc + cur * col[i], 0)
-    )
-  );
+    return arr1.map((row) => arr2[0].map((x,y) => row.reduce((a,b,c) => a + b * arr2[c][y], 0)))
 }
