@@ -3,8 +3,7 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 }).on('line', function(str) {
-    const conversion = str
-        .split('')
+    const conversion = [...str]
         .map(s => s === s.toUpperCase() ? s.toLowerCase() : s.toUpperCase())
         .join('');
     console.log(conversion);
