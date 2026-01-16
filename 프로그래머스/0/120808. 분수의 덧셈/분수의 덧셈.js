@@ -3,12 +3,7 @@ function solution(numer1, denom1, numer2, denom2) {
     let denom = denom1 * denom2;
     
     const gcd = (a, b) => b === 0 ?  a : gcd(b, a % b);
-    const commonGcd = gcd(numer, denom);
+    const g = gcd(numer, denom);
     
-    if(commonGcd > 1) {
-        numer = numer/commonGcd;
-        denom = denom/commonGcd;
-    }
-    
-    return [numer, denom]
+    return [numer/g, denom/g]
 }
